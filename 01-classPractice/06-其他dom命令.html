@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.demo {
+				background-color: deeppink;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--1.父元素.appendChild(需要添加的子节点) 往里面的最后追加进去  
+		2.父元素.insertBefore(你需要添加的元素,原有的元素)
+		3.父元素.removeChild（需要移除的子节点） 
+		4.父元素.replaceChild(新的元素，你需要替换的元素)-->
+		<input type="button" name="btn" id="btn" value="加之" />
+		<div id='box'>		
+			<p>111</p>
+			<p>222</p>
+			<p>333</p>
+			<p>444</p>
+			<p>555</p>
+			<p>666</p>
+			<p>777</p>
+		</div>
+	</body>
+	<script src="myTools.js">
+	</script>
+	<script type="text/javascript">
+		var oBtn = document.getElementById('btn');
+		var aP = document.getElementsByTagName('p');
+		var oDiv = document.getElementById('box');
+		var aSpan = document.createElement('span');
+
+
+//在最后追加
+//		oBtn.onclick = function() {
+//			var aSpan = document.createElement('span');
+//			oDiv.appendChild(aSpan);
+//
+//			aSpan.innerHTML = "span";
+//			aSpan.className = "demo";
+//		}
+//		
+
+//在第一个元素前追加
+//		oBtn.onclick=function(){
+//		var aSpan = document.createElement('span');
+//		oDiv.insertBefore(aSpan,first(oDiv));
+//		aSpan.innerHTML = "span";
+//		aSpan.className = "demo";
+//		}
+//	
+
+//移除节点
+//		oBtn.onclick=function(){
+//			oDiv.removeChild(first(oDiv));			
+//		}
+
+//替换节点
+		oBtn.onclick=function(){
+			var aSpan = document.createElement('span');
+			oDiv.replaceChild(aSpan,last(oDiv));
+			aSpan.innerHTML = "span";
+			aSpan.className = "demo";
+		}
+	</script>
+
+</html>

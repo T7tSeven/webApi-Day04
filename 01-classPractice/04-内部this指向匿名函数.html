@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				background-color: mediumspringgreen;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript">
+		var oDiv = document.getElementById("box");
+
+		function fn() {
+			this.style.backgroundColor = 'hotpink';
+		}
+
+		function fn1() {
+			this.style.border = '5px solid skyblue';
+		}
+
+		function bind(obj, evType, evFn) {
+			obj.hand=function(){
+				evFn.call(obj);
+			}
+			if(obj.addEventListener) {
+				obj.addEventListener(evType, evFn);
+				//obj.hand=evFn;
+			} else if(obj.attachEvent) {
+				obj.attachEvent('on' + evType, obj.hand);
+			} else {
+				obj['on' + evType] = evFn;
+			}
+		}
+		bind(oDiv,'click',fn);
+		bind(oDiv,'click',fn1);
+		function unbind (obj, evType, evFn){
+			if(obj.removeEventListener){
+				obj.removeEventListener(evType, evFn);
+			}
+			else if(obj.attachEvent) {
+				obj.attachEvent('on' + evType, obj.hand);
+			} else {
+				obj['on' + evType] = evFn;
+			}
+		}
+		unbind(oDiv,'click',fn1);
+		
+	</script>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				background-color: hotpink;
+				margin-bottom: 100px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box"></div>
+	</body>
+	<script src="myTools.js">
+		
+	</script>
+	<script>
+		var oBox = document.getElementById('box');
+
+		//标准浏览器的解绑方法
+		function fn() {
+			this.style.backgroundColor = 'blue';
+		}
+
+		function fn2() {
+			this.style.border = "5px solid yellow";
+		}
+		//复习绑定函数
+//		function bind(obj, evType, evFn) {
+//			if(obj.addEventListener) {
+//				obj.addEventListener(evType, evFn, false);
+//			} else if(obj.attachEvent) {
+//				obj.attachEvent("on" + evType, evFn);
+//			} else {
+//				obj["on" + evType] = evFn;
+//			}
+//		}
+		bind(oBox, 'click', fn);
+		bind(oBox, 'click', fn2);
+
+		//解绑函数
+//		function unBind(obj, evType, evFn) {
+//			if(obj.removeEventListener) {
+//				obj.removeEventListener(evType, evFn, false);
+//			} else if(obj.detachEvent) {
+//				obj.detachEvent("on" + evType, evFn);
+//			} else {
+//				obj["on" + evType] = null;
+//			}
+//		}
+		unbind(oBox, 'click', fn2);
+	</script>
+
+</html>

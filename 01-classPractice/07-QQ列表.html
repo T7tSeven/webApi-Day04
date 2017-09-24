@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,
+			h2 {
+				padding: 0;
+				margin: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			#list {
+				width: 240px;
+				border: 1px solid #333;
+				margin: 0 auto;
+			}
+			
+			#list .lis {}
+			
+			#list h2 {
+				height: 30px;
+				line-height: 30px;
+				text-indent: 20px;
+				background: url(images/ico1.gif) no-repeat 5px center pink;
+				color: #000;
+			}
+			
+			#list .active {
+				background: url(images/ico2.gif) no-repeat 5px center palegreen;
+				color: #000;
+			}
+			
+			#list ul {
+				display: none;
+			}
+			
+			#list ul li {
+				line-height: 24px;
+				border-bottom: 1px solid #333;
+				text-indent: 24px;
+			}
+			
+			#list ul .hover {
+				background: peachpuff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul id="list">
+			<li class="lis">
+				<h2>我的好友</h2>
+				<ul>
+					<li>张三</li>
+					<li>张三</li>
+					<li>张三</li>
+					<li>张三</li>
+				</ul>
+			</li>
+			<li class="lis">
+				<h2>企业好友</h2>
+				<ul>
+					<li>李四</li>
+					<li>李四</li>
+					<li>李四</li>
+					<li>李四</li>
+					<li>李四</li>
+				</ul>
+			</li>
+			<li class="lis">
+				<h2>黑名单</h2>
+				<ul>
+					<li>张小三</li>
+					<li>李小四</li>
+				</ul>
+			</li>
+		</ul>
+
+	</body>
+	<script type="text/javascript">
+		//getElementById只能通过document获取
+		var aList = document.getElementById('list');
+		var aLis = aList.getElementsByTagName('li');
+		var aH2 = aList.getElementsByTagName('h2');
+		var aUl = aList.getElementsByTagName('ul');
+
+		//点击h2展开列表
+		for(var i = 0; i < aH2.length; i++) {
+
+			aH2[i].index = i;
+			var onOff = [true, true, true];;
+
+			//每个h2设置点击事件
+
+			//			var oList =$('#list');
+			//
+			//	var aLis =oList.children;
+			//
+			//	var onOff = [true,true,true];
+			//
+			//for (var i = 0; i < aLis.length; i++) {
+			//	aLis[i].children[0].index=i;
+			//	aLis[i].children[0].onclick=function () {
+			//		console.log(this.index);
+			//		for (var i = 0; i < aLis.length; i++) {
+			//			next(aLis[i].children[0]).style.display='none';
+			//			aLis[i].children[0].className='';
+			//		}
+			//
+			//		if (onOff[this.index]) {
+			//			next(this).style.display='block';
+			//			this.className='active';
+			//		}
+			//
+			//		for (var i = 0; i < 3; i++) {
+			//			if (next(aLis[i].children[0]).style.display=='block') {
+			//				onOff[i]=!onOff[i];
+			//			} else {
+			//				onOff[i]=true;
+			//			}	
+			//		}
+			//	}
+			//}
+
+			aH2[i].onclick = function() {
+
+				for(var i = 0; i < aH2.length; i++) {
+					aUl[aH2[i].index].style.display = 'none';
+					aH2[i].className = '';
+				}
+
+				//设置开关
+				if(onOff[this.index]) {
+					//列表显示出来
+					//箭头 和背景颜色改变
+					aUl[this.index].style.display = 'block';
+					this.className = 'active';
+				} //else {
+				//					aUl[this.index].style.display = 'none';
+				//					this.className = '';
+				//				}
+				//				onOff = !onOff;
+				for(var j = 0; j < onOff.length; j++) {
+					if(aUl[j].style.display = 'block') {
+						onOff = !onOff;
+					} else {
+						onOff[i] = true;
+					}
+				}
+
+				//获取每个ul里的li使其经过显示颜色
+				var aLi = aUl[this.index].getElementsByTagName('li');
+
+				for(var j = 0; j < aLi.length; j++) {
+					aLi[j].onmouseover = function() {
+						//暴力清楚之前的颜色
+						for(var j = 0; j < aLi.length; j++) {
+							aLi[j].className = '';
+						}
+						this.className = 'hover';
+					}
+				}
+			}
+
+		}
+	</script>
+
+</html>
